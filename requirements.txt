@@ -32,7 +32,6 @@ lazy-object-proxy==0.0.0
 MarkupSafe==2.1.3
 mccabe==0.7.0
 nano==0.10.0
-ninja @ file:///home/n0n3m4/Desktop/Pydroid/zBuildPrepared/ninja-1.11.1-py3-none-any.whl#sha256=bde2ef34b4295ff07a0c1703ce5c7f3acccd621a91b21d4c6aaf09bd8f6591a8
 oauth2client==4.1.3
 packaging==23.1
 parso==0.8.3
