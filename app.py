@@ -20,7 +20,7 @@ def allowed_file(filename):
 def check_prediction_limit():
     if 'prediction_count' not in session:
         session['prediction_count'] = 0
-    return session['prediction_count'] >= 1#2
+    return session['prediction_count'] >= 4#2
 
 @app.route('/')
 def home():
