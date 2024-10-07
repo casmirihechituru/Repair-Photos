@@ -45,7 +45,7 @@ def predict_image(filename):
   input={
     "img": open(filename, "rb"),
     "scale": 2,
-    "version": "v1.3"
+    "version": "v1.4"
   }
 )
   print(output)
