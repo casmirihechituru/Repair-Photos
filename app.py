@@ -31,13 +31,13 @@ app.secret_key = "your_secret_key"
 # Firebase configuration
 config = {
     'apiKey': os.environ['firebase_api_key'],
-    'authDomain': "funny-eng-chatbot.firebaseapp.com",
+    'authDomain': "cazmir-tech.firebaseapp.com",
     'databaseURL': "https://funny-eng-chatbot-default-rtdb.firebaseio.com",
-    'projectId': "funny-eng-chatbot",
-    'storageBucket': "funny-eng-chatbot.appspot.com",
-    'messagingSenderId': "649383467646",
-    'appId': "1:649383467646:web:9155941c081d23ec44162f",
-    'measurementId': "G-6WX7ERK5R8"
+    'projectId': "cazmir-tech",
+    'storageBucket': "cazmir-tech.appspot.com",
+    'messagingSenderId': "404882482231",
+    'appId': "1:404882482231:web:d614535e20f7f55ef1cbb2",
+    'measurementId': "G-3F5T0SPESV"
 }
 
 # Initialize Firebase
