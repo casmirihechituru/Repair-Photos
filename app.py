@@ -32,7 +32,7 @@ app.secret_key = "your_secret_key"
 config = {
     'apiKey': os.environ['firebase_api_key'],
     'authDomain': "cazmir-tech.firebaseapp.com",
-    'databaseURL': "https://cazmir-tech-default-rtdb.firebaseio.com/",
+    'databaseURL': "https://cazmir-tech-default-rtdb.firebaseio.com",
     'projectId': "cazmir-tech",
     'storageBucket': "cazmir-tech.appspot.com",
     'messagingSenderId': "404882482231",
