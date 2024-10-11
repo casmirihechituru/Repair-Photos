@@ -161,7 +161,7 @@ def contactus():
     return render_template('contactus.html')
 
 @app.route('/subscription')
-def privacypolicy():
+def subscription():
     return render_template('payment.html')
     
 
