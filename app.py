@@ -183,10 +183,15 @@ def home():
 '''
 @app.route('/upload-page')
 def upload_page():
+
+    if not session.get("is_logged_in", False):
+        return redirect(url_for('login'))
     return render_template('upload-page.html')
 
 @app.route('/display-page', methods=['POST'])
 def upload_file():
+    if not session.get("is_logged_in", False):
+        return redirect(url_for('login'))
     if request.method == 'POST':
         if 'file' not in request.files:
             return redirect(request.url)
