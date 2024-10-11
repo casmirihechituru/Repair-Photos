@@ -159,6 +159,10 @@ def aboutus():
 @app.route('/contactus')
 def contactus():
     return render_template('contactus.html')
+
+@app.route('/subscription')
+def privacypolicy():
+    return render_template('payment.html')
     
 
 
