@@ -160,7 +160,7 @@ def aboutus():
 def contactus():
     return render_template('contactus.html')
 
-@app.route('/subscription')
+@app.route('/subscribe')
 def privacypolicy():
     return render_template('payment.html')
     
