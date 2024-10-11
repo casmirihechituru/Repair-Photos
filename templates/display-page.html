@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  <title>Glitta: Enhance photos with Ai</title>
+  <title>Refine photos with AI</title>
 
 <style>
   .bodyy {
@@ -140,7 +140,7 @@ margin-top: 50px;
 
 
 <div class="containerr">
-        <h1 class="hechone"><b>Enhance any photo <span style="color: purple;">using AI</span></b></h1>
+        <h1 class="hechone"><b>Refine any photo <span style="color: purple;">using AI</span></b></h1>
 
           <div class="rounded-box">
 
@@ -150,7 +150,7 @@ margin-top: 50px;
               {% if filename %}
               <div style="display: inline-block">
 
-            <p > Original Image: </p>
+            <p > <b>Original Image: </b></p>
                 <img src="{{ url_for('static', filename='images/' + filename) }}" style="width: 320px;">
 
 
@@ -162,7 +162,7 @@ margin-top: 50px;
               {% if restored_img_url %}
 
             <div style="display: inline-block">
-             <p id="ptwo"> Enhanced image </p>
+             <p id="ptwo"><b>Refined image</b></p>
              <!-- <a href="{{ restored_img_url }}" target="_blank">--><img id="myImage" src="{{ restored_img_url }}" style="width: 320px;">
 
              <!-- </a>-->
@@ -191,7 +191,7 @@ margin-top: 50px;
   
   <!--<hr>-->
     
-  <p id="footertext">copyright &copy; 2024 - Glitta</p>
+  <p id="footertext" style="color:purple;">copyright &copy; 2024 - Glitta</p>
 
   
 
