@@ -1,167 +1,10 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fotolit</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #F3FBFF;
-            color: #333;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100vh;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .page-header {
-            width: 100%;
-            padding: 10px 20px;
-            border-bottom: 1.5px solid grey;
-            text-align: center;
-            background-color: white;
-        }
-
-        #brandname {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .containerr {
-            text-align: center;
-            padding: 20px;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .containerr h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .containerr span {
-            color: lightblue;
-        }
-
-        .rounded-box {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .rounded-box h2 {
-            margin-bottom: 20px;
-            font-size: 22px;
-            color: #333;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input[type="file"] {
-            margin-bottom: 20px;
-            padding: 10px;
-            font-size: 16px;
-        }
-
-        #submit {
-            color: white;
-            background-color: lightblue;
-            border: none;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 250px;
-            height: 40px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #submit:hover {
-            background-color: #3399ff;
-        }
-
-        #footertext {
-            text-align: center;
-            font-size: 14px;
-            padding: 20px;
-            border-top: 1.5px solid grey;
-            background-color: white;
-            margin-top: auto;
-        }
-
-        @media (min-width: 768px) {
-            .containerr h1 {
-                font-size: 32px;
-            }
-
-            .rounded-box {
-                padding: 40px;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container"> 
-        <div class="page-header"> 
-            <h1 id="brandname"><span style="color: lightblue;">foto</span><span style="color: orangered;">lit</span></h1> 
-        </div>
-        
-        <div class="containerr">
-            <h1>Enhance any photo <span>using AI</span></h1>
-            <div class="rounded-box">
-                <h2>UPLOAD A PHOTO</h2>
-                <form method="post" action="/display-page" enctype="multipart/form-data">
-                    <input type="file" name="file" required>
-                    <input id="submit" type="submit" value="Submit">
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <p id="footertext">copyright &copy; 2024 - fotolit</p>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
   <html>
   <head>
       <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>fotolit</title>
+    <title>Refine Photos</title>
     <style>
       .bodyy {
         display: flex;
@@ -253,8 +96,8 @@
       <div class="page-header"> 
         <h1 id="brandname"><span style="color: blue;">foto</span><span style="color: orangered;">lit</span></h1> 
       </div>
-     <!-- <hr>-->
-    <!--  <div class="containerr">
+     <hr>
+     <div class="containerr">
         <h1 class="hechone">Enhance any photo <span style="color: blue;">using AI</span></h1>
         <div class="rounded-box">
           <h2 class>UPLOAD A PHOTO</h2>
@@ -271,8 +114,8 @@
     </div>
     
 
-    <!--<hr>-->
-    <!--
+    <hr>
+    
   <p id="footertext">copyright &copy; 2024 - fotolit</p>
   </body>
-  </html>-->
+  </html>
