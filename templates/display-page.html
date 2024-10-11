@@ -150,7 +150,7 @@ margin-top: 50px;
               {% if filename %}
               <div style="display: inline-block">
 
-            <p > <b>Original Image: </b></p>
+            <p style="font-size: 10px;" > <b>Original Image: </b></p>
                 <img src="{{ url_for('static', filename='images/' + filename) }}" style="width: 320px;">
 
 
@@ -162,7 +162,7 @@ margin-top: 50px;
               {% if restored_img_url %}
 
             <div style="display: inline-block">
-             <p id="ptwo"><b>Refined image</b></p>
+             <p id="ptwo" style="font-size: 10px;"><b>Refined image</b></p>
              <!-- <a href="{{ restored_img_url }}" target="_blank">--><img id="myImage" src="{{ restored_img_url }}" style="width: 320px;">
 
              <!-- </a>-->
