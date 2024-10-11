@@ -203,7 +203,7 @@ def upload_file():
         session["prompt_count_db"] = user_data.get("prompt_count_db", 0)
 
     # Check if the user has accessed this route more than 2 times
-    if session["prompt_count_db"] >= 2:
+    if session["prompt_count_db"] >= 30:
         return render_template("limit.html")
         #return "limit exeeded"
 
