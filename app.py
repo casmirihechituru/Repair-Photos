@@ -204,8 +204,8 @@ def upload_file():
 
     # Check if the user has accessed this route more than 2 times
     if session["prompt_count_db"] >= 2:
-        #return render_template("limit.html")
-        return "limit exeeded"
+        return render_template("limit.html")
+        #return "limit exeeded"
 
     if request.method == 'POST':
         if 'file' not in request.files:
