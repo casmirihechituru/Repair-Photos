@@ -7,6 +7,9 @@ import pyrebase
 from datetime import datetime
 import re
 import requests
+import schedule
+import time
+
 
 UPLOAD_FOLDER = '/static/images'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -44,6 +47,53 @@ config = {
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 db = firebase.database()
+
+
+
+
+#start of Delete...****************************************†******
+#Delete photos in ./static/image folder after a given time
+
+
+# Function to delete files in a folder
+def delete_files_in_folder(folder_path):
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+                print(f"{filename} deleted successfully!")
+            else:
+                print(f"{filename} is not a file, skipping...")
+        except Exception as e:
+            print(f"Error deleting {filename}: {e}")
+
+# Set folder path
+folder_path = "./static/images"
+'''
+# Schedule the task every 1 hour
+schedule.every(1).hour.do(delete_files_in_folder, folder_path=folder_path)
+
+# Keep the script running
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+    
+ '''
+ 
+    
+       
+   
+schedule.every(5).minutes.do(delete_files_in_folder, folder_path=folder_path)
+
+# Keep the script running
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+
+
+#Delete photos in ./static/image folder after a given time
+#End of Delete...***********************************
 
 @app.route("/")
 def login():
