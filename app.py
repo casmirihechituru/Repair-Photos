@@ -9,6 +9,7 @@ import re
 import requests
 import schedule
 import time
+import threading
 
 
 UPLOAD_FOLDER = '/static/images'
@@ -193,7 +194,6 @@ def payment():
 #Delete photos in ./static/image folder after a given time
 
 
-# Function to delete files in a folder
 def delete_files_in_folder(folder_path):
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
@@ -209,26 +209,20 @@ def delete_files_in_folder(folder_path):
 # Set folder path
 folder_path = "./static/images"
 
-'''
 # Schedule the task every 1 hour
 schedule.every(1).hour.do(delete_files_in_folder, folder_path=folder_path)
-# Keep the script running
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-    
- '''
- 
-    
-       
-   
-schedule.every(5).minutes.do(delete_files_in_folder, folder_path=folder_path)
-'''
-# Keep the script running
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-'''
+
+# Function to run schedule in a separate thread
+def run_scheduler():
+    while True:
+        schedule.run_pending()
+        time.sleep(60)  # Check every minute
+
+# Start scheduler in a new thread
+def start_scheduler():
+    scheduler_thread = threading.Thread(target=run_scheduler)
+    scheduler_thread.daemon = True  # Daemon thread will exit when the main program exits
+    scheduler_thread.start()
 #Delete photos in ./static/image folder after a given time
 #End of Delete...***********************************
 
@@ -290,7 +284,5 @@ def upload_file():
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
 if __name__ == "__main__":
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    start_scheduler()
     app.run(debug=True, host='0.0.0.0')
