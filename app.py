@@ -160,9 +160,14 @@ def aboutus():
 def contactus():
     return render_template('contactus.html')
 
-@app.route('/subscription')
-def subscription():
-    return render_template('payment.html')
+email_for_paystack=""
+
+@app.route('/subscription', methods=['POST', 'GET'])
+def payment():
+    global email_for_paystack
+    usr_uid = session['uid']
+    email_for_paystack= db.child("users").child(usr_uid).child("email").get().val()
+    return render_template('payment.html', email=email_for_paystack)
     
 
 
