@@ -207,10 +207,10 @@ def delete_files_in_folder(folder_path):
             print(f"Error deleting {filename}: {e}")
 
 # Set folder path
-folder_path = "./static/images"
+folder_path = "https://repair-photos.onrender.com/static/images"
 
 # Schedule the task every 1 hour
-schedule.every(5).minutes.do(delete_files_in_folder, folder_path=folder_path)
+schedule.every(3).minutes.do(delete_files_in_folder, folder_path=folder_path)
 
 # Function to run schedule in a separate thread
 def run_scheduler():
