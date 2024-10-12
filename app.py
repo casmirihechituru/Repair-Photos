@@ -210,7 +210,7 @@ def delete_files_in_folder(folder_path):
 folder_path = "./static/images"
 
 # Schedule the task every 1 hour
-schedule.every(1).hour.do(delete_files_in_folder, folder_path=folder_path)
+schedule.every(5).minutes.do(delete_files_in_folder, folder_path=folder_path)
 
 # Function to run schedule in a separate thread
 def run_scheduler():
