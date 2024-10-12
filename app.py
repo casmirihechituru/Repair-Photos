@@ -223,12 +223,12 @@ while True:
        
    
 schedule.every(5).minutes.do(delete_files_in_folder, folder_path=folder_path)
-
+'''
 # Keep the script running
 while True:
     schedule.run_pending()
     time.sleep(1)
-
+'''
 #Delete photos in ./static/image folder after a given time
 #End of Delete...***********************************
 
@@ -290,4 +290,7 @@ def upload_file():
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
 if __name__ == "__main__":
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
     app.run(debug=True, host='0.0.0.0')
