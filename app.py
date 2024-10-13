@@ -179,14 +179,40 @@ def payment():
     
 
 
-
-
-
-
-
 #End of Added from My Chatbot GitHub code
 #*********************************************
 
+
+
+# Starting of Delete images in folder after some time *********
+
+def delete_files_in_folder():
+    folder = "." + UPLOAD_FOLDER  # ensure the correct path is used
+    for filename in os.listdir(folder):
+        file_path = os.path.join(folder, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+                print(f"Deleted {file_path}")
+        except Exception as e:
+            print(f"Error deleting {file_path}: {e}")
+
+# Schedule the deletion job every 5 minutes
+schedule.every(5).minutes.do(delete_files_in_folder)
+
+# Function to run the scheduler in a separate thread
+def run_scheduler():
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Start the scheduler thread
+scheduler_thread = threading.Thread(target=run_scheduler, daemon=True)
+scheduler_thread.start()
+
+
+
+# Ending of Delete images in folder after some time
 
 
 
