@@ -275,7 +275,7 @@ def upload_file():
     subscription_code_from_email = get_subscription_by_email(email)
 
     subscription_code = subscription_code_from_email
-    
+    print(check_subscription_status(subscription_code))
 
     
     if not session.get("is_logged_in", False):
@@ -292,7 +292,7 @@ def upload_file():
 
     # Check if the user has accessed this route more than 2 times
     #if session["prompt_count_db"] >= 2 and not check_subscription_status(subscription_code):
-    if session["prompt_count_db"] >= 2 and not check_subscription_status(subscription_code):
+    if session["prompt_count_db"] >= 2 and (not check_subscription_status(subscription_code)):
         return render_template("limit.html")
         #return "limit exeeded"
 
