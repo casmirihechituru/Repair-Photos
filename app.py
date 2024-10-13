@@ -186,7 +186,7 @@ def payment():
     usr_uid = session['uid']
     email_for_paystack= db.child("users").child(usr_uid).child("email").get().val()
     return render_template('payment.html', email=email_for_paystack)
-
+'''
 def get_subscription_by_email(email):
     url = "https://api.paystack.co/subscription"
     headers = {
@@ -211,7 +211,7 @@ def check_subscription_status(subscription_code):
         else:
             return False
     return False
-'''
+
 #End of Added from My Chatbot GitHub code
 #*********************************************
 
@@ -270,12 +270,12 @@ def upload_page():
 
 @app.route('/display-page', methods=['POST'])
 def upload_file():
-    '''
+    
     email = session.get("email")
     subscription_code_from_email = get_subscription_by_email(email)
 
     subscription_code = subscription_code_from_email
-    '''
+    
 
     
     if not session.get("is_logged_in", False):
@@ -292,7 +292,7 @@ def upload_file():
 
     # Check if the user has accessed this route more than 2 times
     #if session["prompt_count_db"] >= 2 and not check_subscription_status(subscription_code):
-    if session["prompt_count_db"] >= 2:
+    if session["prompt_count_db"] >= 2 and not check_subscription_status(subscription_code):
         return render_template("limit.html")
         #return "limit exeeded"
 
