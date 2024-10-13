@@ -198,13 +198,7 @@ margin-top: 50px;
 
   <script>
     
-  function openPaymentPage() {
-    window.open('https://sandbox-flw-web-v3.herokuapp.com/pay/iijneo4lcwio', '_top');
-  }
-
-
-
-    
+      
     
     function randSevenAlphabet(){
       var alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -233,7 +227,7 @@ margin-top: 50px;
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'fotolit-'+randSevenAlphabet()+'.jpg');
+    link.setAttribute('download', 'refinephotos'+randSevenAlphabet()+'.jpg');
 
   
     document.body.appendChild(link);
