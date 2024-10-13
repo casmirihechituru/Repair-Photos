@@ -182,7 +182,7 @@ def payment():
 #End of Added from My Chatbot GitHub code
 #*********************************************
 
-
+'''
 
 # Starting of Delete images in folder after some time *********
 
@@ -214,7 +214,7 @@ scheduler_thread.start()
 
 # Ending of Delete images in folder after some time
 
-
+'''
 
 
 # Function to check if the file extension is allowed
