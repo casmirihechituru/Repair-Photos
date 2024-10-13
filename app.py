@@ -225,6 +225,8 @@ def allowed_file(filename):
 def home():
     return render_template('index.html')
 '''
+
+
 @app.route('/upload-page')
 def upload_page():
 
@@ -232,6 +234,51 @@ def upload_page():
         return redirect(url_for('login'))
     return render_template('upload-page.html')
 
+
+from urllib.parse import urlparse
+
+@app.route('/display-page', methods=['POST'])
+def upload_file():
+    if not session.get("is_logged_in", False):
+        return redirect(url_for('login'))
+
+    # Fetch the current prompt count from the database
+    user_data = db.child("users").child(session["uid"]).get().val()
+    if not user_data:
+        return redirect(url_for('login'))
+
+    if "prompt_count_db" not in session:
+        session["prompt_count_db"] = user_data.get("prompt_count_db", 0)
+
+    if session["prompt_count_db"] >= 30:
+        return render_template("limit.html")
+
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            full_filename = "." + url_for("static", filename="images/" + filename)
+            file.save(full_filename)
+
+            predicted_img_url = predict_image(full_filename)
+
+            # Parse the predicted_img_url to extract only the path
+            parsed_url = urlparse(predicted_img_url)
+            short_url = parsed_url.path
+
+            # Increment the count in both session and database
+            session["prompt_count_db"] += 1
+            db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
+
+            return render_template("display-page.html", filename=filename, restored_img_url=short_url)
+
+
+
+'''
 @app.route('/display-page', methods=['POST'])
 def upload_file():
     if not session.get("is_logged_in", False):
@@ -269,6 +316,7 @@ def upload_file():
             db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
+            '''
 if __name__ == "__main__":
     
     app.run(debug=True, host='0.0.0.0')
