@@ -266,15 +266,16 @@ def upload_file():
 
             predicted_img_url = predict_image(full_filename)
 
-            # Parse the predicted_img_url to extract only the path
-            parsed_url = urlparse(predicted_img_url)
-            short_url = parsed_url.path
+            # Instead of using the real predicted_img_url, let's mask it with a custom short URL
+            masked_url = "https://short.url/restored_image.jpg"
 
             # Increment the count in both session and database
             session["prompt_count_db"] += 1
             db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
 
-            return render_template("display-page.html", filename=filename, restored_img_url=short_url)
+            return render_template("display-page.html", filename=filename, restored_img_url=masked_url)
+
+
 
 
 
