@@ -177,7 +177,7 @@ def payment():
     email_for_paystack= db.child("users").child(usr_uid).child("email").get().val()
     return render_template('payment.html', email=email_for_paystack)
     
-
+'''
 email_for_paystack=""
 
 @app.route('/payment', methods=['POST', 'GET'])
@@ -186,7 +186,7 @@ def payment():
     usr_uid = session['uid']
     email_for_paystack= db.child("users").child(usr_uid).child("email").get().val()
     return render_template('payment.html', email=email_for_paystack)
-
+'''
 def get_subscription_by_email(email):
     url = "https://api.paystack.co/subscription"
     headers = {
