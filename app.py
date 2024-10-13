@@ -190,46 +190,6 @@ def payment():
 
 
 
-#start of Delete...****************************************†******
-#Delete photos in ./static/image folder after a given time
-
-
-def delete_files_in_folder(folder_path):
-    for filename in os.listdir(folder_path):
-        file_path = os.path.join(folder_path, filename)
-        try:
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-                print(f"{filename} deleted successfully!")
-            else:
-                print(f"{filename} is not a file, skipping...")
-        except Exception as e:
-            print(f"Error deleting {filename}: {e}")
-
-# Set folder path
-folder_path = "https://repair-photos.onrender.com/static/images"
-
-# Schedule the task every 1 hour
-schedule.every(3).minutes.do(delete_files_in_folder, folder_path=folder_path)
-
-# Function to run schedule in a separate thread
-def run_scheduler():
-    while True:
-        schedule.run_pending()
-        time.sleep(60)  # Check every minute
-
-# Start scheduler in a new thread
-def start_scheduler():
-    scheduler_thread = threading.Thread(target=run_scheduler)
-    scheduler_thread.daemon = True  # Daemon thread will exit when the main program exits
-    scheduler_thread.start()
-#Delete photos in ./static/image folder after a given time
-#End of Delete...***********************************
-
-
-
-
-
 
 # Function to check if the file extension is allowed
 def allowed_file(filename):
@@ -284,5 +244,5 @@ def upload_file():
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
 if __name__ == "__main__":
-    start_scheduler()
+    
     app.run(debug=True, host='0.0.0.0')
