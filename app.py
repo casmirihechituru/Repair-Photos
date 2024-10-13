@@ -178,6 +178,39 @@ def payment():
     return render_template('payment.html', email=email_for_paystack)
     
 
+email_for_paystack=""
+
+@app.route('/payment', methods=['POST', 'GET'])
+def payment():
+    global email_for_paystack
+    usr_uid = session['uid']
+    email_for_paystack= db.child("users").child(usr_uid).child("email").get().val()
+    return render_template('payment.html', email=email_for_paystack)
+
+def get_subscription_by_email(email):
+    url = "https://api.paystack.co/subscription"
+    headers = {
+        "Authorization": "Bearer sk_test_9db0fe12af0a5cd5d29b29471888d5057b813522",
+        "Content-Type": "application/json"
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        subscriptions = response.json().get("data", [])
+        for subscription in subscriptions:
+            if subscription["customer"]["email"] == email:
+                return subscription.get("subscription_code")
+    return None
+
+def check_subscription_status(subscription_code):
+    url = f"https://check-paystack-api.onrender.com/check_subscription/{subscription_code}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        if data.get('message') == "Subscription is active":
+            return True
+        else:
+            return False
+    return False
 
 #End of Added from My Chatbot GitHub code
 #*********************************************
