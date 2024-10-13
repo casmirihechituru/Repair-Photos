@@ -270,6 +270,13 @@ def upload_page():
 
 @app.route('/display-page', methods=['POST'])
 def upload_file():
+    email = session.get("email")
+    subscription_code_from_email = get_subscription_by_email(email)
+
+    subscription_code = subscription_code_from_email
+
+
+    
     if not session.get("is_logged_in", False):
         return redirect(url_for('login'))
 
@@ -283,7 +290,7 @@ def upload_file():
         session["prompt_count_db"] = user_data.get("prompt_count_db", 0)
 
     # Check if the user has accessed this route more than 2 times
-    if session["prompt_count_db"] >= 30:
+    if session["prompt_count_db"] >= 2:
         return render_template("limit.html")
         #return "limit exeeded"
 
