@@ -230,7 +230,7 @@ def delete_files_in_folder():
         except Exception as e:
             print(f"Error deleting {file_path}: {e}")
 
-# Schedule the deletion job every 5 minutes
+# Schedule the deletion jo every 5 minutes
 schedule.every(5).hours.do(delete_files_in_folder)
 
 # Function to run the scheduler in a separate thread
