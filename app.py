@@ -35,7 +35,8 @@ app.secret_key = "your_secret_key"
 # Firebase configuration
 config = {
     'apiKey': os.environ['firebase_api_key'],
-    'authDomain': "cazmir-tech.firebaseapp.com",
+    #'authDomain': "cazmir-tech.firebaseapp.com",
+    'authDomain': "refine-photos.onrender.com",
     'databaseURL': "https://cazmir-tech-default-rtdb.firebaseio.com",
     'projectId': "cazmir-tech",
     'storageBucket': "cazmir-tech.appspot.com",
