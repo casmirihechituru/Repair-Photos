@@ -4,7 +4,7 @@ from photo_restorer import predict_image
 import os
 # below imports are new adds
 import pyrebase
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 import requests
 import schedule
@@ -315,6 +315,13 @@ def upload_file():
             db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
+
+
+
+
+
+
+
             
 if __name__ == "__main__":
     
