@@ -268,7 +268,7 @@ def upload_page():
         return redirect(url_for('login'))
     return render_template('upload-page.html')
 
-
+'''
 @app.route('/display-page', methods=['POST'])
 def upload_file():
     
@@ -315,8 +315,69 @@ def upload_file():
             db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
 
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
+'''
+
+#Daily renewal code
 
 
+
+@app.route('/display-page', methods=['POST'])
+def upload_file():
+    email = session.get("email")
+    subscription_code_from_email = get_subscription_by_email(email)
+
+    subscription_code = subscription_code_from_email
+    print(check_subscription_status(subscription_code))
+
+    if not session.get("is_logged_in", False):
+        return redirect(url_for('login'))
+
+    # Fetch the user data from the database
+    user_data = db.child("users").child(session["uid"]).get().val()
+    if not user_data:
+        return redirect(url_for('login'))
+
+    # Get the last accessed date and the prompt count from the database
+    last_accessed_date = user_data.get("last_accessed_date")
+    prompt_count_db = user_data.get("prompt_count_db", 0)
+
+    # Get the current date (you can adjust to UTC if needed)
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    # Reset prompt count if a new day has started
+    if last_accessed_date != current_date:
+        prompt_count_db = 0
+        db.child("users").child(session["uid"]).update({
+            "prompt_count_db": 0,
+            "last_accessed_date": current_date
+        })
+
+    # Update session with the latest count and date
+    session["prompt_count_db"] = prompt_count_db
+    session["last_accessed_date"] = current_date
+
+    # Check if the user has exceeded their daily limit of 50 prompts
+    if session["prompt_count_db"] >= 2 and not check_subscription_status(subscription_code):
+        return render_template("limit.html")
+
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return redirect(request.url)
+        file = request.files['file']
+        if file.filename == '':
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            full_filename = "." + url_for("static", filename="images/" + filename)
+            file.save(full_filename)
+
+            predicted_img_url = predict_image(full_filename)
+
+            # Increment the count in both session and database
+            session["prompt_count_db"] += 1
+            db.child("users").child(session["uid"]).update({"prompt_count_db": session["prompt_count_db"]})
+
+            return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
 
 
 
