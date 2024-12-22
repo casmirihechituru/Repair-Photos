@@ -268,6 +268,14 @@ def upload_page():
         return redirect(url_for('login'))
     return render_template('upload-page.html')
 
+#presignup upload code
+@app.route('/presignup-upload-page')
+def upload_page():
+
+    #if not session.get("is_logged_in", False):
+        #return redirect(url_for('login'))
+    return render_template('presignup-upload-page.html')
+
 '''
 @app.route('/display-page', methods=['POST'])
 def upload_file():
