@@ -317,6 +317,47 @@ def upload_file():
             return render_template("display-page.html", filename=filename, restored_img_url=predicted_img_url)
 '''
 
+
+#cookie presignup cod
+
+@app.route('/presignup-display-page', methods=['POST'])
+def upload_file():
+    # Retrieve the user's prediction count from cookies
+    prediction_count = int(request.cookies.get('prediction_count', 0))
+
+    # Check if the user has exceeded the limit
+    if prediction_count >= 3:
+        return "render_template(limit.html)"  # Or any other response for limit exceeded
+
+    if 'file' not in request.files:
+        return redirect(request.url)
+    file = request.files['file']
+    if file.filename == '':
+        return redirect(request.url)
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        full_filename = "./static/images/" + filename
+        file.save(full_filename)
+
+        predicted_img_url = predict_image(full_filename)
+
+        # Increment the prediction count
+        prediction_count += 1
+
+        # Create a response and set the updated cookie
+        response = make_response(
+            render_template("presignup-display-page.html", filename=filename, restored_img_url=predicted_img_url)
+        )
+        response.set_cookie('prediction_count', str(prediction_count), max_age=31536000)  # 1 year expiration
+
+        return response
+
+    return redirect(request.url)
+
+
+
+
+
 #Daily renewal code
 
 
