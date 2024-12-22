@@ -270,7 +270,7 @@ def upload_page():
 
 #presignup upload code
 @app.route('/presignup-upload-page')
-def upload_page():
+def presignup_upload_page():
 
     #if not session.get("is_logged_in", False):
         #return redirect(url_for('login'))
