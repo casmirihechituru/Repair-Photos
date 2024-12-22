@@ -329,7 +329,7 @@ def upload_file():
 #cookie presignup cod
 
 @app.route('/presignup-display-page', methods=['POST'])
-def upload_file():
+def presignup_upload_file():
     # Retrieve the user's prediction count from cookies
     prediction_count = int(request.cookies.get('prediction_count', 0))
 
