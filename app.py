@@ -360,7 +360,8 @@ def presignup_upload_file():
 
         return response
 
-    return redirect(request.url)
+    #return redirect(request.url)
+    return render_template("first_login.html")
 
 
 
