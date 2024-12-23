@@ -1,67 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscription Limit Exceeded</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Refine Photos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'main.css') }}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .subscription-button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .subscription-button:hover {
-            background-color: #218838;
-        }
-
-        .subscription-button:focus {
-            outline: none;
-        }
+      body {
+          background-image: url("{{ url_for('static', filename='1.jpg') }}");
+      }
     </style>
+    <script>
+    function checkPasswordStrength(password) {
+        // At least one lower case letter, one upper case letter, one digit, one special character, and at least 8 characters long
+        var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return re.test(password);
+    }
+
+    function validateForm() {
+        var password = document.getElementById('password').value;
+        if (!checkPasswordStrength(password)) {
+            alert('Password must be at least 8 characters long, contain a lowercase letter, uppercase letter, a digit and a special character.');
+            return false;
+        }
+        return true;
+    }
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>Limit Exceeded</h1>
-        <p>You have reached the maximum number of free photo enhancements, or your subscription has expired.</p>
-        <p>Please subscribe to continue using the service.</p>
-        <form action="/subscription" method="post">
-            <button class="subscription-button" type="submit">Subscribe Now</button>
-        </form>
-    </div>
+<div class="wrapper fadeInDown">
+  <div id="formContent" style="padding-top: 30px;" >
+      <!-- <h1 style="color: #5fbae9; margin: 0px; padding: 0px;">refinePhotos</h2>-->
+ <h1 style="color: purple; margin: 0px; padding: 0px;">refinePhotos</h2>
+    <h3 style="margin: 0px; padding: 0px; color: grey;">The Beauty In You</h3>
+    
+    <!-- Tabs Titles -->
+    <a href="/"><h2 class="inactive underlineHover"> Sign In </h2></a>
+    <h2 class="active">Sign Up </h2>
+
+    <!-- Icon --
+    <div class="fadeIn first">
+      <img src="{{ url_for('static', filename = 'user.png') }}" id="icon" alt="User Icon" />
+    </div>-->
+
+    <!-- Signup Form -->
+    <form action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+      <input type="text" id="name" class="fadeIn second" name="name" placeholder="name">
+      <input type="email" id="login" class="fadeIn second" name="email" placeholder="email">
+      <input type="password" id="password" class="fadeIn third" name="pass" placeholder="password">
+      <input type="button" onclick="togglePasswordVisibility()" value="Show Password">
+      <input type="submit" class="fadeIn fourth" value="Sign Up">
+    </form>
+
+  </div>
+</div>
+<script>
+  function togglePasswordVisibility() {
+      var passwordInput = document.getElementById("password");
+      if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+      } else {
+          passwordInput.type = "password";
+      }
+  }
+</script>
 </body>
 </html>
