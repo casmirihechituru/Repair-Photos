@@ -326,6 +326,11 @@ def upload_file():
 '''
 
 
+
+@app.route('/presgnup-limit')
+def presignup_limit():
+    return render_template('presignup-limit.html')
+
 #cookie presignup cod
 
 @app.route('/presignup-display-page', methods=['POST'])
@@ -335,7 +340,7 @@ def presignup_upload_file():
 
     # Check if the user has exceeded the limit
     if prediction_count >= 3:
-        return redirect(url_for("first_login"))
+        return redirect(url_for("presignup_limit"))
         #return render_template("first_login.html")  # Or any other response for limit exceeded
 
     if 'file' not in request.files:
@@ -362,7 +367,7 @@ def presignup_upload_file():
         return response
 
     #return redirect(request.url)
-    return redirect(url_for("first_login"))
+    return redirect(url_for("presignup_limit"))
     #return render_template("first_login.html")
 
 
