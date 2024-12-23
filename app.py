@@ -335,7 +335,7 @@ def presignup_upload_file():
 
     # Check if the user has exceeded the limit
     if prediction_count >= 3:
-        return "render_template(limit.html)"  # Or any other response for limit exceeded
+        return render_template("first_login.html")  # Or any other response for limit exceeded
 
     if 'file' not in request.files:
         return redirect(request.url)
@@ -360,7 +360,7 @@ def presignup_upload_file():
 
         return response
 
-    return "redirect(request.url)"
+    return redirect(request.url)
 
 
 
