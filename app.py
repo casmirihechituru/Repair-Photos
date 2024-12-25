@@ -53,16 +53,21 @@ db = firebase.database()
 
 
 
-
+'''
 @app.route("/")
 def login():
     return render_template("presignup-upload-page.html")
-
+'''
 @app.route("/signup")
 def signup():
     return render_template("signup.html")
 
-@app.route("/welcome")
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+    
+@app.route("/")
 def welcome():
     if session.get("is_logged_in", False):
         return render_template("index.html", email=session["email"], name=session["name"])
