@@ -56,7 +56,7 @@ db = firebase.database()
 
 @app.route("/")
 def login():
-    return render_template("login.html")
+    return render_template("presignup-login.html")
 
 @app.route("/signup")
 def signup():
@@ -67,7 +67,7 @@ def welcome():
     if session.get("is_logged_in", False):
         return render_template("index.html", email=session["email"], name=session["name"])
     else:
-        return redirect(url_for('login'))
+        return redirect(url_for('presignup_upload_file'))
 
 def check_password_strength(password):
     return re.match(r'^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$', password) is not None
@@ -265,7 +265,7 @@ def home():
 def upload_page():
 
     if not session.get("is_logged_in", False):
-        return redirect(url_for('login'))
+        return redirect(url_for('presignup_upload_file'))
     return render_template('upload-page.html')
 
 #presignup upload code
@@ -387,7 +387,7 @@ def upload_file():
     print(check_subscription_status(subscription_code))
 
     if not session.get("is_logged_in", False):
-        return redirect(url_for('login'))
+        return redirect(url_for('presignup_upload_file'))
 
     # Fetch the user data from the database
     user_data = db.child("users").child(session["uid"]).get().val()
