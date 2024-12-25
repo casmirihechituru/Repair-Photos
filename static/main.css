@@ -244,7 +244,8 @@ input[type=email]:placeholder, input[type=password]:placeholder, input[type=text
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  /*background-color: #56baed;*/
+  background-color: #D4A1FF;
   content: "";
   transition: width 0.2s;
 }
