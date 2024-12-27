@@ -344,7 +344,7 @@ def presignup_upload_file():
     prediction_count = int(request.cookies.get('prediction_count', 0))
 
     # Check if the user has exceeded the limit
-    if prediction_count >= 1:
+    if prediction_count >= 3:
         return redirect(url_for("presignup_limit"))
         #return render_template("first_login.html")  # Or any other response for limit exceeded
 
@@ -419,7 +419,7 @@ def upload_file():
     session["last_accessed_date"] = current_date
 
     # Check if the user has exceeded their daily limit of 50 prompts
-    if session["prompt_count_db"] >= 4 and not check_subscription_status(subscription_code):
+    if session["prompt_count_db"] >= 5 and not check_subscription_status(subscription_code):
         return render_template("limit.html")
 
     if request.method == 'POST':
